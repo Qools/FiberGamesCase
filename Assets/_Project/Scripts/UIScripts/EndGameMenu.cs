@@ -8,7 +8,10 @@ public class EndGameMenu : UIPanel
 {
     [SerializeField] private Button retryButton;
     [SerializeField] private Button nextLevelButton;
+
     public TextMeshProUGUI endGameText;
+    public TextMeshProUGUI endGameWaveText;
+    public TextMeshProUGUI endGameEnemyText;
 
     private void Start()
     {
@@ -19,16 +22,18 @@ public class EndGameMenu : UIPanel
     public override void OnEnable()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        EventSystem.OnGameOver += OnGameEnd;
+        BusSystem.OnGameOver += OnGameEnd;
     }
 
     public void OnDisable()
     {
-        EventSystem.OnGameOver -= OnGameEnd;
+        BusSystem.OnGameOver -= OnGameEnd;
     }
 
     private void OnGameEnd(GameResult gameResult)
     {
+        MenuManager.Instance.SwitchPanel<EndGameMenu>();
+
         retryButton.gameObject.SetActive(false);
         nextLevelButton.gameObject.SetActive(false);
 
@@ -49,6 +54,8 @@ public class EndGameMenu : UIPanel
         nextLevelButton.gameObject.SetActive(true);
 
         endGameText.text = "Level " + (DataManager.Instance.GetLevel() - 1).ToString() + " Completed";
+        endGameWaveText.text = "Killed Enemy" + " " + PlayerStats.KilledEnemy.ToString();
+        endGameEnemyText.text = "Survived Waves" + " " + PlayerStats.Rounds.ToString();
     }
 
     private void GameOver()
@@ -56,19 +63,21 @@ public class EndGameMenu : UIPanel
         retryButton.gameObject.SetActive(true);
 
         endGameText.text = "Level Failed";
+        endGameWaveText.text = "Killed Enemy" + " " + PlayerStats.KilledEnemy.ToString();
+        endGameEnemyText.text = "Survived Waves" + " " + PlayerStats.Rounds.ToString();
     }
 
     public void OnNextButtonPressed()
     {
         GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
 
-        MenuManager.Instance.SwitchPanel<StartMenu>();
+        MenuManager.Instance.CloseAllPanels();
     }
 
     public void OnRetryButtonPressed()
     {
         GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
 
-        MenuManager.Instance.SwitchPanel<StartMenu>();
+        MenuManager.Instance.CloseAllPanels();
     }
 }

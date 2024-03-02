@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
     public LevelList levelList;
 
     [HideInInspector]
-    public GameObject currentLevel;
+    public string currentLevel;
 
     public bool isGameStarted = false;
+    public bool isGameOver = false;
 
     private IEnumerator Start()
     {
@@ -21,9 +23,9 @@ public class GameManager : Singleton<GameManager>
 
         yield return StartCoroutine(WaitInit(Init));
 
-        LoadLevel(DataManager.Instance.GetLevel());
-
         MenuManager.Instance.loadingScreen.SetActive(false);
+
+        MenuManager.Instance.SwitchPanel<StartMenu>();
     }
 
     private void Update()
@@ -41,19 +43,26 @@ public class GameManager : Singleton<GameManager>
 
     private void OnEnable()
     {
-        EventSystem.OnGameOver += GameResult;
-        EventSystem.OnStartGame += OnGameStarted;
+        BusSystem.OnGameOver += GameResult;
+        BusSystem.OnStartGame += OnGameStarted;
     }
 
     private void OnDisable()
     {
-        EventSystem.OnGameOver -= GameResult;
-        EventSystem.OnStartGame -= OnGameStarted;
+        BusSystem.OnGameOver -= GameResult;
+        BusSystem.OnStartGame -= OnGameStarted;
     }
 
     private void OnGameStarted()
     {
         isGameStarted = true;
+        isGameOver = false;
+    }
+
+    public void GameOver()
+    {
+        isGameStarted = false;
+        isGameOver = true;
     }
 
     private void GameResult(GameResult gameResult)
@@ -64,6 +73,11 @@ public class GameManager : Singleton<GameManager>
         {
             Win();
         }
+
+        else
+        {
+            GameOver();
+        }
     }
 
     public void Init()
@@ -73,20 +87,22 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadLevel(int _level)
     {
-        if (currentLevel != null)
-        {
-            Destroy(currentLevel.gameObject);
-        }
+        currentLevel = levelList.LoopLevelsByIndex(_level);
 
-        currentLevel = Instantiate(levelList.LoopLevelsByIndex(_level));
+        MenuManager.Instance.loadingScreen.SetActive(true);
 
-        EventSystem.CallNewLevelLoad();
+        SceneManager.LoadScene(currentLevel);
 
-        MenuManager.Instance.SwitchPanel<StartMenu>();     
+        MenuManager.Instance.loadingScreen.SetActive(false);
+
+        MenuManager.Instance.CloseAllPanels();
+
+        BusSystem.CallNewLevelLoad();
     }
 
     public void Win()
     {
         DataManager.Instance.SetLevel(DataManager.Instance.GetLevel() + 1);
     }
+
 }

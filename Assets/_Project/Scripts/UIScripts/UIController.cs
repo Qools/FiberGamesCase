@@ -26,16 +26,16 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventSystem.OnStartGame += OnGameStart;
-        EventSystem.OnGameOver += OnGameEnd;
-        EventSystem.OnNewLevelLoad += OnNewLevelLoad;
+        BusSystem.OnStartGame += OnGameStart;
+        BusSystem.OnGameOver += OnGameEnd;
+        BusSystem.OnNewLevelLoad += OnNewLevelLoad;
     }
 
     private void OnDisable()
     {
-        EventSystem.OnStartGame -= OnGameStart;
-        EventSystem.OnGameOver -= OnGameEnd;
-        EventSystem.OnNewLevelLoad -= OnNewLevelLoad;
+        BusSystem.OnStartGame -= OnGameStart;
+        BusSystem.OnGameOver -= OnGameEnd;
+        BusSystem.OnNewLevelLoad -= OnNewLevelLoad;
     }
 
     private void OnGameStart()

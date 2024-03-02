@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelList", menuName = "LevelList")]
 public class LevelList : ScriptableObject
 {
-    public List<GameObject> all = new List<GameObject>();
+    public List<string> all = new List<string>();
 
-    public GameObject LoopLevelsByIndex(int _level)
+    public string LoopLevelsByIndex(int _level)
     {
         int index = (_level - 1 >= 0) ? (_level - 1) % all.Count : ((_level - 1) % all.Count) + all.Count;
 

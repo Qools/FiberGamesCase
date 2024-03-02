@@ -14,8 +14,6 @@ public class StartMenu : UIPanel
 
     public void StartGame()
     {
-        EventSystem.CallStartGame();
-
-        MenuManager.Instance.SwitchPanel<InGamePanel>();
+        GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
     }
 }
