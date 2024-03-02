@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b425084963e2f594e80a8a90acdbb678, type: 3}
+  m_Name: BasicProjectile
+  m_EditorClassIdentifier: 
+  particleEffect: {fileID: 8342454467522524801, guid: 4c85451739bb5b4419da614be95e3716, type: 3}
+  damage: 25
+  speed: 10
+  explosionRadius: 0
+  projectileRotationSpeed: 60

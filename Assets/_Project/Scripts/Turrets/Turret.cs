@@ -92,16 +92,12 @@ public class Turret : MonoBehaviour
 
     private void LookAtTarget()
     {
-        float angle = Mathf.Atan2(
-            target.position.y - transform.position.y, 
-            target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+        Vector3 direction = target.position - this.transform.position;
 
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-
-        partToRotate.rotation = Quaternion.RotateTowards(
-            partToRotate.rotation, 
-            targetRotation, 
-            turretAttributes.turretRotationSpeed * Time.deltaTime);
+        partToRotate.transform.rotation = Quaternion.RotateTowards(
+           partToRotate.transform.rotation,
+            Quaternion.LookRotation(direction),
+            turretAttributes.turretRotationSpeed * Time.fixedDeltaTime);
     }
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
