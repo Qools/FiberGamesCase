@@ -15,18 +15,21 @@ public class Node : MonoBehaviour
     [HideInInspector] public GameObject turret;
     [HideInInspector] public TurretBlueprint turretBlueprint;
     [HideInInspector] public bool isUpgraded = false;
+    [SerializeField] private bool _isOccupied = false;
 
     // Start is called before the first frame update
     void Start()
     {
         nodeRenderer = GetComponent<Renderer>();
         startColor = nodeRenderer.material.color;
+
+        _isOccupied = false;
     }
 
 
     private void OnMouseEnter()
     {
-        if (GameManager.Instance.isGameOver)
+        if (_isOccupied)
         {
             return;
         }
@@ -59,7 +62,7 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.isGameOver)
+        if (_isOccupied)
         {
             return;
         }
@@ -68,7 +71,6 @@ public class Node : MonoBehaviour
         {
             return;
         }
-
 
         if (turret != null)
         {
@@ -93,13 +95,15 @@ public class Node : MonoBehaviour
 
         PlayerStats.Money -= _turretBlueprint.price;
 
-        GameObject newTurret = Instantiate(_turretBlueprint.turretPrefab, GetOffsetPosition(), Quaternion.identity);
+        GameObject newTurret = Instantiate(_turretBlueprint.turretPrefab, GetOffsetPosition(), Quaternion.identity, this.transform.parent.parent);
         turret = newTurret;
 
-        GameObject buildEffect = Instantiate(_turretBlueprint.buildEffect, transform.position, Quaternion.identity);
+        GameObject buildEffect = Instantiate(_turretBlueprint.buildEffect, transform.position, Quaternion.identity, this.transform.parent.parent);
         Destroy(buildEffect, 2f);
 
         turretBlueprint = _turretBlueprint;
+
+        _isOccupied = true;
     }
 
     public void UpgradeTurret()
@@ -113,10 +117,11 @@ public class Node : MonoBehaviour
 
         Destroy(turret);
 
-        GameObject newTurret = Instantiate(turretBlueprint.upgradeTurretPrefab, GetOffsetPosition(), Quaternion.identity);
+        GameObject newTurret = Instantiate(turretBlueprint.upgradeTurretPrefab, GetOffsetPosition(), Quaternion.identity, this.transform.parent.parent);
         turret = newTurret;
 
-        GameObject upgradeEffect = Instantiate(turretBlueprint.upgradeEffect, transform.position, Quaternion.identity);
+        Vector3 offset = Vector3.up * 1.5f;
+        GameObject upgradeEffect = Instantiate(turretBlueprint.upgradeEffect, transform.position + offset, Quaternion.identity, this.transform.parent.parent);
         Destroy(upgradeEffect, 1f);
 
         isUpgraded = true;
@@ -126,12 +131,13 @@ public class Node : MonoBehaviour
     {
         PlayerStats.Money += turretBlueprint.GetSellAmount();
 
-        GameObject sellEffect = Instantiate(turretBlueprint.sellEffect, transform.position, Quaternion.identity);
+        GameObject sellEffect = Instantiate(turretBlueprint.sellEffect, transform.position, Quaternion.identity, this.transform.parent.parent);
         Destroy(sellEffect, 2f);
 
         Destroy(turret);
         turretBlueprint = null;
 
+        _isOccupied = false;
     }
 
     public Vector3 GetOffsetPosition()

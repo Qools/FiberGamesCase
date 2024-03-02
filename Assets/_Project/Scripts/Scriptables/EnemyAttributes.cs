@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyAttributes : ScriptableObject
 {
     public GameObject deadEffect;
+    public GameObject projectile;
 
     public int healthPoints;
     public float speed;
@@ -13,4 +14,6 @@ public class EnemyAttributes : ScriptableObject
     public int killReward;
     public float range;
     public int attackValue;
+    public float attackRate;
+    public float rotationSpeed;
 }

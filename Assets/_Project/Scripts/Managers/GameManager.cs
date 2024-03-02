@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
     public LevelList levelList;
 
     [HideInInspector]
-    public string currentLevel;
+    public GameObject currentLevel;
 
     public bool isGameStarted = false;
     public bool isGameOver = false;
@@ -87,11 +86,12 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadLevel(int _level)
     {
-        currentLevel = levelList.LoopLevelsByIndex(_level);
+        if (currentLevel != null)
+        {
+            Destroy(currentLevel.gameObject);
+        }
 
-        MenuManager.Instance.loadingScreen.SetActive(true);
-
-        SceneManager.LoadScene(currentLevel);
+        currentLevel = Instantiate(levelList.LoopLevelsByIndex(_level));
 
         MenuManager.Instance.loadingScreen.SetActive(false);
 

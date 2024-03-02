@@ -34,12 +34,11 @@ RectTransform:
   - {fileID: 7567747073684701767}
   - {fileID: 7567747073629289311}
   m_Father: {fileID: 7567747074634549497}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1059}
+  m_SizeDelta: {x: 0, y: 2118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7567747073121669665
 CanvasRenderer:
@@ -93,11 +92,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7567747073121669670}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -57.5}
   m_SizeDelta: {x: 225, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7567747073629289304
@@ -242,12 +240,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7567747073121669670}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -120, y: 250}
-  m_SizeDelta: {x: 225, y: 115}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -489.5, y: -57.5}
+  m_SizeDelta: {x: 979, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7567747073684701761
 CanvasRenderer:
@@ -393,7 +390,6 @@ RectTransform:
   - {fileID: 8377238041897699555}
   - {fileID: 7567747073121669670}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -417,7 +413,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -493,11 +491,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7567747073121669670}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 120, y: 250}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 112.5, y: -57.5}
   m_SizeDelta: {x: 225, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7567747074938328504
@@ -615,6 +612,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7567747074634549497}
     m_Modifications:
     - target: {fileID: 2109905927048500422, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
@@ -639,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2109905927048500425, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2109905927048500425, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -647,7 +645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2109905927048500425, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2109905927048500425, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -691,7 +689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2109905927048500425, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 2109905927048500425, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -758,6 +756,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b61cf410b3390f4bb0e775c5b56139b, type: 3}
 --- !u!224 &8377238041897699555 stripped
 RectTransform:

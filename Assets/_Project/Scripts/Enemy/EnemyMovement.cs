@@ -27,11 +27,6 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        Movement();
-    }
-
-    private void Movement()
-    {
         if (isReachedEnd)
         {
             return;
@@ -41,6 +36,13 @@ public class EnemyMovement : MonoBehaviour
         {
             return;
         }
+
+        Movement();
+    }
+
+    private void Movement()
+    {
+       
 
         Vector3 direction = target.position - transform.position;
         transform.Translate(direction.normalized * enemy.enemyAttributes.speed * Time.deltaTime, Space.World);
@@ -69,8 +71,6 @@ public class EnemyMovement : MonoBehaviour
 
         if (waypointIndex == Waypoints.waypoints.Length)
         {
-            isReachedEnd = true;
-
             EndPath();
 
             return;
@@ -79,10 +79,12 @@ public class EnemyMovement : MonoBehaviour
         target = Waypoints.waypoints[waypointIndex];
     }
 
-    private void EndPath()
+    public void EndPath()
     {
-        PlayerStats.Lives--;
-        BusSystem.CallLivesReduced(PlayerStats.Lives);
-        Destroy(gameObject);
+        isReachedEnd = true;
+
+        //PlayerStats.Lives--;
+        //BusSystem.CallLivesReduced(PlayerStats.Lives);
+        //Destroy(gameObject);
     }
 }

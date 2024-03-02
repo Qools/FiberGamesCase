@@ -8,8 +8,8 @@ public class InGamePanel : UIPanel
 
     public override void Open()
     {
-        base.Open();
+        //base.Open();
 
-        inGameText.text = "Level " + DataManager.Instance.GetLevel().ToString("00");
+        //inGameText.text = "Level " + DataManager.Instance.GetLevel().ToString("00");
     }
 }

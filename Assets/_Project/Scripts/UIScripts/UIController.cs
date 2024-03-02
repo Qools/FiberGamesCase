@@ -7,7 +7,6 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup startMenu;
     [SerializeField] private CanvasGroup endGameMenu;
-    [SerializeField] private CanvasGroup inGamePanel;
 
     private void Start()
     {
@@ -18,10 +17,6 @@ public class UIController : MonoBehaviour
         endGameMenu.DOFade(0, 0.01f);
         endGameMenu.interactable = false;
         endGameMenu.blocksRaycasts = false;
-
-        inGamePanel.DOFade(0, 0.01f);
-        inGamePanel.interactable = false;
-        inGamePanel.blocksRaycasts = false;
     }
 
     private void OnEnable()
@@ -47,10 +42,6 @@ public class UIController : MonoBehaviour
         endGameMenu.DOFade(0, 0.01f);
         endGameMenu.interactable = false;
         endGameMenu.blocksRaycasts = false;
-
-        inGamePanel.DOFade(1, 0.01f);
-        inGamePanel.interactable = true;
-        inGamePanel.blocksRaycasts = true;
     }
 
     private void OnGameEnd(GameResult gameResult)
@@ -62,10 +53,6 @@ public class UIController : MonoBehaviour
         endGameMenu.DOFade(1, 0.01f);
         endGameMenu.interactable = true;
         endGameMenu.blocksRaycasts = true;
-
-        inGamePanel.DOFade(0, 0.01f);
-        inGamePanel.interactable = false;
-        inGamePanel.blocksRaycasts = false;
     }
 
     private void OnNewLevelLoad()
@@ -77,9 +64,5 @@ public class UIController : MonoBehaviour
         endGameMenu.DOFade(0, 0.01f);
         endGameMenu.interactable = false;
         endGameMenu.blocksRaycasts = false;
-
-        inGamePanel.DOFade(0, 0.01f);
-        inGamePanel.interactable = false;
-        inGamePanel.blocksRaycasts = false;
     }
 }

@@ -10,4 +10,9 @@ public class EnemyAnimationController : MonoBehaviour
     {
         animator.SetTrigger(PlayerPrefKeys.enemyDead);
     }
+
+    public void PlayAttackAnimation(string attackName)
+    {
+        animator.SetTrigger(attackName);
+    }
 }

@@ -120,7 +120,7 @@ public class WaveSpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject enemyToSpawn = waves[waveIndex].enemy;
-        Instantiate(enemyToSpawn, spawnPoint.position, Quaternion.identity);
+        Instantiate(enemyToSpawn, spawnPoint.position, Quaternion.identity, this.transform.parent);
     }
 
     private int EnemiesPerWave()

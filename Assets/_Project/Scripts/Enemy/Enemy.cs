@@ -4,21 +4,92 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+[RequireComponent(typeof(EnemyAnimationController))]
+[RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyAnimationController enemyAnimattor;
+    [SerializeField] private EnemyMovement enemyMovement;
 
     public EnemyAttributes enemyAttributes;
     [SerializeField] private Image healthBar;
 
+    [SerializeField] private Transform _firePoint;
+    private Transform _target;
+
+    public int id;
     private int enemyHealthPoints;
     private float _healthPoints;
+    private float _fireRateCountDown = 0f;
+
+    private string _attackAnimationName;
 
     public bool isDying = false;
+    public bool isRanged;
+    private bool _isAttacking = false;
+
     private void Start()
     {
+        _isAttacking = false;
+
         enemyHealthPoints = enemyAttributes.healthPoints;
         _healthPoints = enemyAttributes.healthPoints;
+
+        enemyAnimattor = GetComponent<EnemyAnimationController>();
+        enemyMovement = GetComponent<EnemyMovement>();
+
+        if (isRanged)
+        {
+            _attackAnimationName = PlayerPrefKeys.enemyShot;
+        }
+
+        else
+        {
+            _attackAnimationName = PlayerPrefKeys.enemySlash;
+        }
+
+        InvokeRepeating("UpdateTargets", 0f, 0.5f);
+    }
+
+    private void Update()
+    {
+        if (!_isAttacking)
+        {
+            return;
+        }
+
+        _calculateFireRate();
+    }
+
+    private void _calculateFireRate()
+    {
+        if (_fireRateCountDown <= 0f)
+        {
+            _attack();
+
+            _fireRateCountDown = 1f / enemyAttributes.attackRate;
+        }
+
+        _fireRateCountDown -= Time.deltaTime;
+    }
+
+    private void _attack()
+    {
+        if (isRanged)
+        {
+            GameObject projectileGO = Instantiate(enemyAttributes.projectile, _firePoint.position, _firePoint.rotation);
+
+            if (projectileGO.TryGetComponent(out Projectile _projectile))
+            {
+                _projectile.SetTarget(_target);
+            }
+        }
+
+        else
+        {
+            BusSystem.CallLivesReduced(enemyAttributes.attackValue);
+        }
+
     }
 
     public void TakeDamage(int _damage)
@@ -69,5 +140,31 @@ public class Enemy : MonoBehaviour
         PlayerStats.KilledEnemy++;
 
         BusSystem.CallEnemyDestroyed();
+    }
+
+    private void UpdateTargets()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(PlayerPrefKeys.castle);
+        float shortesDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+
+        foreach (var enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (distanceToEnemy < shortesDistance)
+            {
+                shortesDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+            }
+        }
+
+        if (nearestEnemy != null && shortesDistance <= enemyAttributes.range)
+        {
+            enemyMovement.EndPath();
+            enemyAnimattor.PlayAttackAnimation(_attackAnimationName);
+            _isAttacking = true;
+
+        }
     }
 }

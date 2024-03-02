@@ -9,4 +9,6 @@ public class PlayerPrefKeys
     public const string enemyRun = "Run";
     public const string enemySlash = "Slash";
     public const string enemyShot = "Shot";
+
+    public const string castle = "Castle";
 }
