@@ -78,16 +78,12 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject projectileGO = Instantiate(turretAttributes.projectile, firePoint.position, firePoint.rotation);
-
-        Projectile projectile = null;
+        GameObject projectileGO = Instantiate(turretAttributes.projectile, firePoint.position, firePoint.rotation, this.transform.parent);
 
         if (projectileGO.TryGetComponent(out Projectile _projectile))
         {
-            projectile = _projectile;
+            _projectile.SetTarget(target);
         }
-
-        projectile.SetTarget(target);
     }
 
     private void LookAtTarget()

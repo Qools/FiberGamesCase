@@ -12,8 +12,8 @@ public class Node : MonoBehaviour
     [SerializeField] private Color notEnoughMoneyColor;
     private Color startColor;
 
-    [HideInInspector] public GameObject turret;
-    [HideInInspector] public TurretBlueprint turretBlueprint;
+    public GameObject turret;
+    public TurretBlueprint turretBlueprint;
     [HideInInspector] public bool isUpgraded = false;
     [SerializeField] private bool _isOccupied = false;
 
@@ -29,10 +29,6 @@ public class Node : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (_isOccupied)
-        {
-            return;
-        }
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -62,10 +58,7 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_isOccupied)
-        {
-            return;
-        }
+        
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -88,6 +81,11 @@ public class Node : MonoBehaviour
 
     private void BuildTurret(TurretBlueprint _turretBlueprint)
     {
+        if (_isOccupied)
+        {
+            return;
+        }
+
         if (PlayerStats.Money < _turretBlueprint.price)
         {
             return;

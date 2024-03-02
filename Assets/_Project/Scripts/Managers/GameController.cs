@@ -37,6 +37,8 @@ public class GameController : Singleton<GameController>
             return;
         }
 
+        PlayerStats.Lives -= _lives;
+
         if (_lives <= 0)
         {
             Debug.Log("Game Over");

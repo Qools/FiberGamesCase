@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
             _attackAnimationName = PlayerPrefKeys.enemySlash;
         }
 
-        InvokeRepeating("UpdateTargets", 0f, 0.5f);
+        InvokeRepeating(nameof(UpdateTargets), 0f, 0.1f);
     }
 
     private void Update()
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
     {
         if (isRanged)
         {
-            GameObject projectileGO = Instantiate(enemyAttributes.projectile, _firePoint.position, _firePoint.rotation);
+            GameObject projectileGO = Instantiate(enemyAttributes.projectile, _firePoint.position, _firePoint.rotation, this.transform.parent);
 
             if (projectileGO.TryGetComponent(out Projectile _projectile))
             {
@@ -161,10 +161,12 @@ public class Enemy : MonoBehaviour
 
         if (nearestEnemy != null && shortesDistance <= enemyAttributes.range)
         {
+            _target = nearestEnemy.transform;
             enemyMovement.EndPath();
             enemyAnimattor.PlayAttackAnimation(_attackAnimationName);
             _isAttacking = true;
 
+            CancelInvoke(nameof(UpdateTargets));
         }
     }
 }

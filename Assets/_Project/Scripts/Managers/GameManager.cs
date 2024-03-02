@@ -103,6 +103,8 @@ public class GameManager : Singleton<GameManager>
     public void Win()
     {
         DataManager.Instance.SetLevel(DataManager.Instance.GetLevel() + 1);
+
+        isGameOver = true;
     }
 
 }

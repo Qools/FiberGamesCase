@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private Wave[] waves;
 
     public Transform spawnPoint;
+    public List<Transform> spawnPoints = new List<Transform>();
 
     [SerializeField] private int baseEnemies = 8;
     [SerializeField] private float timeBetweenWaves = 5f;
@@ -19,7 +20,9 @@ public class WaveSpawner : MonoBehaviour
     private float timeSinceLastSpawn;
     private int enemiesAlive;
     private int enemiesLeftToSpawn;
+    
     private bool isSpawning = false;
+    public bool isMultipleSpawnPoints = false;
 
     private void Start()
     {
@@ -120,7 +123,17 @@ public class WaveSpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject enemyToSpawn = waves[waveIndex].enemy;
-        Instantiate(enemyToSpawn, spawnPoint.position, Quaternion.identity, this.transform.parent);
+
+        if (!isMultipleSpawnPoints)
+        {
+            Instantiate(enemyToSpawn, spawnPoint.position, Quaternion.identity, this.transform.parent);
+        }
+
+        else 
+        {
+            Instantiate(enemyToSpawn, spawnPoints[enemiesLeftToSpawn % spawnPoints.Count].position, Quaternion.identity, this.transform.parent);
+        }
+
     }
 
     private int EnemiesPerWave()

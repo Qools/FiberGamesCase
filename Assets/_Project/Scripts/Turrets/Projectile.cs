@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
     {
         if (projectileAttributes.particleEffect != null)
         {
-            GameObject particleEffect = Instantiate(projectileAttributes.particleEffect, transform.position, transform.rotation);
+            GameObject particleEffect = Instantiate(projectileAttributes.particleEffect, transform.position, transform.rotation, this.transform.parent);
 
             Destroy(particleEffect, 2f);
         }
@@ -89,8 +89,6 @@ public class Projectile : MonoBehaviour
         if (enemy.TryGetComponent(out Enemy _enemy))
         {
             _enemy.TakeDamage(projectileAttributes.damage);
-
-            return;
         }
 
         if (enemy.CompareTag(PlayerPrefKeys.castle))
