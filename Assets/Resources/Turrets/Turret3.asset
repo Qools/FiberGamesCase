@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f10961c09c7c0034dbbae2bb08c0b761, type: 3}
-  m_Name: Turret2
+  m_Name: Turret3
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6642052828179058207, guid: 9cfc7b441a841314fbc42949b58f9a95, type: 3}
-  range: 9
+  projectile: {fileID: 5939559552449100072, guid: 77dab7d2d673cbe4ba1f57c2608c258d, type: 3}
+  range: 6
   turretRotationSpeed: 360
-  fireRate: 1
+  fireRate: 0.5

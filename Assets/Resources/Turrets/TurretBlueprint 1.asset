@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7faadbea5916a2a4e91d72a580d6c78b, type: 3}
-  m_Name: TurretBlueprint
+  m_Name: TurretBlueprint 1
   m_EditorClassIdentifier: 
-  turretPrefab: {fileID: 1238979231584173746, guid: ab6411e9379f3554a98bbd91ba771776, type: 3}
-  upgradeTurretPrefab: {fileID: 8985678540097839334, guid: 7b7496ec07d53fd49895bc0af46368d1, type: 3}
+  turretPrefab: {fileID: 7402314451240780962, guid: 64a96767ec2f8e54ab9a7e6149b29843, type: 3}
+  upgradeTurretPrefab: {fileID: 6968650167085563226, guid: 1a95e65c0ad018d41b6a96a2f879fe4e, type: 3}
   buildEffect: {fileID: 6887331363672756991, guid: 1c212e64f1a36b84897a9d832439818b, type: 3}
   upgradeEffect: {fileID: 8067509285381968798, guid: cc2306d9f23dc0640a4d2469c5a860b3, type: 3}
   sellEffect: {fileID: 5369566070494974107, guid: 532cb5b9f5ecf4841a4d0f9a054d0a23, type: 3}
-  turretIcon: {fileID: 21300000, guid: 9a2155f624434764aaf7a3dff1e1f80c, type: 3}
-  upgradeTurretIcon: {fileID: 21300000, guid: 197801ec4d8e0d74c8fcf096df4e65ce, type: 3}
-  price: 250
-  upgradePrice: 350
+  turretIcon: {fileID: 21300000, guid: bafbc5fb16cbeaa4eb9429ea0bb85197, type: 3}
+  upgradeTurretIcon: {fileID: 21300000, guid: ef16f2fc31eba3b4483f53fa1a9a76c8, type: 3}
+  price: 200
+  upgradePrice: 400

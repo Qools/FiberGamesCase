@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Turret1
   m_EditorClassIdentifier: 
   projectile: {fileID: 5939559552449100072, guid: ae064b7f156f3274e98bbceb2f0dc784, type: 3}
-  range: 6
+  range: 8
   turretRotationSpeed: 360
   fireRate: 1

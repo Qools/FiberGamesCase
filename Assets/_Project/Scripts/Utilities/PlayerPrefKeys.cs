@@ -11,4 +11,5 @@ public class PlayerPrefKeys
     public const string enemyShot = "Shot";
 
     public const string castle = "Castle";
+    public const string wave = "Wave";
 }

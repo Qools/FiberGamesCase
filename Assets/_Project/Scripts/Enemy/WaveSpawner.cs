@@ -107,6 +107,9 @@ public class WaveSpawner : MonoBehaviour
         enemiesLeftToSpawn = waves[waveIndex].count;
 
         countdown = timeBetweenWaves;
+
+        BusSystem.CallCurrentWaveEnemyCount(enemiesLeftToSpawn);
+        BusSystem.CallWavesCount(waves.Length, waveIndex + 1);
     }
 
     private void EndWave()
