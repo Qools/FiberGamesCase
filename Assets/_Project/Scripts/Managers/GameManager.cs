@@ -100,6 +100,7 @@ public class GameManager : Singleton<GameManager>
         BusSystem.CallNewLevelLoad();
     }
 
+    public void LoadLevel(string _levelName)
     {
         if (currentLevel != null)
         {
