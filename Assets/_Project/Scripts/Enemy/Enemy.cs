@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     public bool isDying = false;
     public bool isRanged;
+    public bool isFast;
     private bool _isAttacking = false;
 
     private void Start()
@@ -83,12 +84,16 @@ public class Enemy : MonoBehaviour
             {
                 _projectile.SetTarget(_target);
             }
+
+            return;
         }
 
-        else
+        if (isFast)
         {
-            BusSystem.CallLivesReduced(enemyAttributes.attackValue);
+            _enemyExplosion();
         }
+
+        BusSystem.CallLivesReduced(enemyAttributes.attackValue);
 
     }
 
@@ -120,6 +125,13 @@ public class Enemy : MonoBehaviour
 
         AddRewardMoney();
         Destroy(gameObject, 1f);
+    }
+
+    private void _enemyExplosion()
+    {
+        PlayDeathEffect();
+        AddRewardMoney();
+        Destroy(gameObject, 0.2f);
     }
 
     private void PlayDeathEffect()
@@ -161,12 +173,13 @@ public class Enemy : MonoBehaviour
 
         if (nearestEnemy != null && shortesDistance <= enemyAttributes.range)
         {
+            CancelInvoke(nameof(UpdateTargets));
+            
             _target = nearestEnemy.transform;
             enemyMovement.EndPath();
             enemyAnimattor.PlayAttackAnimation(_attackAnimationName);
             _isAttacking = true;
 
-            CancelInvoke(nameof(UpdateTargets));
         }
     }
 }
