@@ -13,4 +13,9 @@ public class LevelList : ScriptableObject
 
         return all[index];
     }
+
+    public GameObject LoopLevelsByName(string _name)
+    {
+        return all.Find(x => x.name == _name);
+    }
 }

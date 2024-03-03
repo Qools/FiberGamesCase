@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f10961c09c7c0034dbbae2bb08c0b761, type: 3}
-  m_Name: Turret4
+  m_Script: {fileID: 11500000, guid: 8e483516556404d4e85100b8b01931eb, type: 3}
+  m_Name: Wave2
   m_EditorClassIdentifier: 
-  projectile: {fileID: 5939559552449100072, guid: 77dab7d2d673cbe4ba1f57c2608c258d, type: 3}
-  range: 10
-  turretRotationSpeed: 360
-  fireRate: 4
+  enemy: {fileID: 9026087769506401108, guid: 1183b3a287948324f8b0badfa9156d55, type: 3}
+  count: 10
+  rate: 1

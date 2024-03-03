@@ -53,7 +53,7 @@ public class EndGameMenu : UIPanel
     {
         nextLevelButton.gameObject.SetActive(true);
 
-        endGameText.text = "Level " + (DataManager.Instance.GetLevel() - 1).ToString() + " Completed";
+        endGameText.text = "Level " + DataManager.Instance.GetLevel().ToString() + " Completed";
         endGameWaveText.text = "Killed Enemy" + " " + PlayerStats.KilledEnemy.ToString();
         endGameEnemyText.text = "Survived Waves" + " " + PlayerStats.Rounds.ToString();
     }

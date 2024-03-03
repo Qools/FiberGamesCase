@@ -100,6 +100,21 @@ public class GameManager : Singleton<GameManager>
         BusSystem.CallNewLevelLoad();
     }
 
+    {
+        if (currentLevel != null)
+        {
+            Destroy(currentLevel.gameObject);
+        }
+
+        currentLevel = Instantiate(levelList.LoopLevelsByName(_levelName));
+
+        MenuManager.Instance.loadingScreen.SetActive(false);
+
+        MenuManager.Instance.CloseAllPanels();
+
+        BusSystem.CallNewLevelLoad();
+    }
+
     public void Win()
     {
         DataManager.Instance.SetLevel(DataManager.Instance.GetLevel() + 1);

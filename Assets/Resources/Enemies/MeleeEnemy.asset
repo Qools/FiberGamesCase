@@ -18,7 +18,7 @@ MonoBehaviour:
   speed: 3
   minDistanceToWaypoint: 0.1
   killReward: 30
-  range: 3
+  range: 0.5
   attackValue: 1
   attackRate: 1
   rotationSpeed: 360

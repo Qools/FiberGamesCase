@@ -15,4 +15,4 @@ MonoBehaviour:
   projectile: {fileID: 5939559552449100072, guid: 77dab7d2d673cbe4ba1f57c2608c258d, type: 3}
   range: 6
   turretRotationSpeed: 360
-  fireRate: 0.5
+  fireRate: 2

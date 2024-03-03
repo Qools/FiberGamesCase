@@ -13,6 +13,11 @@ public class WaveProgressView : MonoBehaviour
 
     private int _enemyCount;
 
+    private void Start()
+    {
+        _waveProgressSlider.DOValue(_waveProgressSlider.maxValue, 0.1f);
+    }
+
     private void OnEnable()
     {
         BusSystem.OnWavesCount += _setWaveCountText;
@@ -33,7 +38,7 @@ public class WaveProgressView : MonoBehaviour
 
     private void _setWaveCountText(int waveCount, int currentWaveId)
     {
-        _waveCountText.text = PlayerPrefKeys.wave + " " + waveCount.ToString() + "/" + currentWaveId.ToString();
+        _waveCountText.text = PlayerPrefKeys.wave + " " + currentWaveId.ToString() + "/" + waveCount.ToString();
     }
 
     private void _setWaveProgressSlider(int enemyCount)
